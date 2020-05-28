@@ -1,10 +1,11 @@
 <?php
 if (isset($members)) $members = $members;
-
 ?>
 
-<h2 class="">Ruiters</h2>
-<a class="btn btn-primary float-right m-2" href="register">Registreer</a>
+<div class="row m-0">
+    <h2 class="col my-2 p-0 pl-2">Ruiters</h2>
+    <a class=" btn btn-primary float-right m-2" href="member/register">Registreer</a>
+</div>
 
 <table class="table table-hover table-striped">
     <thead>
@@ -18,10 +19,10 @@ if (isset($members)) $members = $members;
     <tbody>
     <?php foreach ($members as $member) { ?>
         <tr>
-        <th scope="row"><?= $member['id'] ?></th>
-        <th scope="row"><?= $member['name'] ?></th>
-        <th scope="row"><?= $member['address'] ?></th>
-        <th scope="row"><?= $member['phone'] ?></th>
+            <th scope="row"><?= $member['id'] ?></th>
+            <th scope="row"><?= $member['name'] ?></th>
+            <th scope="row"><?= $member['address'] ?></th>
+            <th scope="row"><?= $member['phone'] ?></th>
         </tr>
     <?php } ?>
     </tbody>

@@ -2,7 +2,7 @@
 ?>
 <div class="container">
 
-    <h2>Registreer nieuwe ruiter</h2>
+    <h2 class="mt-3">Registreer nieuwe ruiter</h2>
 
     <form class="" name="register" method="post" action="registerMember">
 

@@ -4,10 +4,14 @@ require("../helpers/functions.php");
 
 function getAllMembers()
 {
-    $pdo = openDatabaseConnection();
+    try {
+        $pdo = openDatabaseConnection();
 
-    $stmt = $pdo->prepare("SELECT * FROM members");
-    $stmt->execute();
+        $stmt = $pdo->prepare("SELECT * FROM members");
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error obtaining members: " . $e->getMessage();
+    }
     $pdo = null;
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -21,11 +25,9 @@ function modelRegisterMember($data)
         $pdo = openDatabaseConnection();
 
         foreach ($data as $key => $value) {
-            $$key = sanitize($value);
             if (empty($value)) exit("$key was not filled in.");
+                $$key = sanitize($value);
         }
-
-        extract($data, EXTR_OVERWRITE);
 
         $stmt = $pdo->prepare("INSERT INTO members (name, address, phone) VALUES (:name, :address, :phone)");
         $stmt->bindParam(":name", $name);

@@ -31,10 +31,10 @@ if (isset($title)) {
 
 <nav class="navbar navbar-dark bg-info">
     <ul class="nav">
-        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>home/index">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>horse/index">Paarden</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>member/index">Ruiters</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>home">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>horse">Paarden</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>member">Ruiters</a></li>
     </ul>
 
-    <div><h3 class="navbar-brand header-title m-0">Manege App</h3></div>
+    <a href="<?= URL ?>home"><h3 class="navbar-brand header-title m-0">Manege App</h3></a>
 </nav>
