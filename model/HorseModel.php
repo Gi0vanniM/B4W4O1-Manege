@@ -17,6 +17,23 @@ function getAllHorses()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getHorseById($id)
+{
+    try {
+        $pdo = openDatabaseConnection();
+
+        $id = sanitize($id);
+
+        $stmt = $pdo->prepare("SELECT * FROM horses WHERE id=?");
+        $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        echo "Error obtaining data: " . $e->getMessage();
+    }
+    $pdo = null;
+
+    return $stmt->fetch();
+}
+
 function modelAddHorse($data)
 {
     $success = false;

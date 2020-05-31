@@ -1,2 +1,3 @@
 RewriteEngine on
+RewriteRule \.(shtml|js|ico|gif|jpg|png|css|flv|swf|swz)$ - [NC,L]
 RewriteRule ^(.*) public/$1 [L]

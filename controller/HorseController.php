@@ -7,6 +7,10 @@ function index()
     render('horse/index', ['horses' => getAllHorses()]);
 }
 
+function detail($id) {
+    render('horse/detail', ['horse' => getHorseById($id)]);
+}
+
 function add()
 {
     render("horse/add");
