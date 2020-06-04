@@ -1,6 +1,6 @@
 <?php
 
-require("../helpers/functions.php");
+require_once("../helpers/functions.php");
 
 function getAllReservations()
 {
@@ -17,6 +17,21 @@ function getAllReservations()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getReservationById($id)
+{
+    sanitize($id);
+    try {
+        $pdo = openDatabaseConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM reservations WHERE id=?");
+        $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        echo "Error obtaining reservation: " . $e->getMessage();
+    }
+    $pdo = null;
+    return $stmt->fetch();
+}
+
 function modelReserveHorse($data)
 {
     $success = false;
@@ -28,6 +43,8 @@ function modelReserveHorse($data)
             if (empty($value)) exit("$key was not filled in.");
             $$key = sanitize($value);
         }
+
+        $start_time = date('Y-m-d H:i:s', strtotime("$date $time"));
 
         $stmt = $pdo->prepare("INSERT INTO reservations (member_id, horse_id, start_time, duration) VALUES (:member_id, :horse_id, :start_time, :duration)");
         $stmt->bindParam(":member_id", $member_id);

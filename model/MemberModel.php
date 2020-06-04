@@ -1,6 +1,6 @@
 <?php
 
-require("../helpers/functions.php");
+require_once("../helpers/functions.php");
 
 function getAllMembers()
 {
@@ -15,6 +15,21 @@ function getAllMembers()
     $pdo = null;
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getMemberById($id)
+{
+    sanitize($id);
+    try {
+        $pdo = openDatabaseConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM members WHERE id=?");
+        $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        echo "Error obtaining member: " . $e->getMessage();
+    }
+    $pdo = null;
+    return $stmt->fetch();
 }
 
 function modelRegisterMember($data)

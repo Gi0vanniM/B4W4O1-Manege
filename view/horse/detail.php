@@ -19,11 +19,11 @@ if (isset($horse)) $horse = $horse;
                     Schofhoogte: <?= $horse['wither_height'] ?>cm
                 </p>
             </div>
-            <div class="row m-0">
+        </div>
+        <div class="row m-0 text-white">
 
-                <h4>Reserveringen:</h4>
+            <h4 class="ml-3">Reserveringen:</h4>
 
-            </div>
         </div>
 
     </div>

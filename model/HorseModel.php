@@ -1,6 +1,6 @@
 <?php
 
-require("../helpers/functions.php");
+require_once("../helpers/functions.php");
 
 function getAllHorses()
 {
@@ -19,18 +19,16 @@ function getAllHorses()
 
 function getHorseById($id)
 {
+    sanitize($id);
     try {
         $pdo = openDatabaseConnection();
-
-        $id = sanitize($id);
 
         $stmt = $pdo->prepare("SELECT * FROM horses WHERE id=?");
         $stmt->execute([$id]);
     } catch (PDOException $e) {
-        echo "Error obtaining data: " . $e->getMessage();
+        echo "Error obtaining horse: " . $e->getMessage();
     }
     $pdo = null;
-
     return $stmt->fetch();
 }
 

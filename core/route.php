@@ -2,10 +2,6 @@
 // Met de route functie wordt bepaald welke controller en welke action er moet worden ingeladen
 function route()
 {
-
-    if (true) {
-
-    }
     // Hier wordt de functie aangeroepen die de URL op splitst op het standaard seperatie teken (in PHP is dit een /)
     $url = splitUrl();
     // Er wordt een variable opgemaakt uit de URL, de eerste variabele wordt geplaatst in de key controller, de tweede wordt in de key action geplaatst. De overige worden in params geplaatst (als array)

@@ -34,6 +34,7 @@ if (isset($title)) {
         <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>home">Home</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>horse">Paarden</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>member">Ruiters</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="<?= URL ?>reservation">Reserveringen</a></li>
     </ul>
 
     <a href="<?= URL ?>home"><h3 class="navbar-brand header-title m-0">Manege App</h3></a>

@@ -15,3 +15,7 @@ define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SC
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER); // Dit genereerd de standaard URL van de applicatie
 
 define('DEFAULT_CONTROLLER', 'Home'); // Dit is de standaard controller waarmee de webapplictie wordt opgestart
+
+// andere instellingen
+define('COST_PER_HOUR', 55); // 55 euro per uur
+define('MAX_TIME', 3); // 3 uur paard rijden is max
