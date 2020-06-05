@@ -54,23 +54,29 @@ if (isset($reservations)) $reservations = $reservations;
         <input class="mt-3 btn border-primary" type="submit" value="Reserveer">
     </form>
 
-    <div class="bg-primary mt-5">
+    <div class="bg-primary mt-5 text-white">
 
         <div class="row">
             <div class="col">
-                <span>Ruiter: </span><span id="info_Member"></span>
+                <span>Ruiter: </span><span id="info_member"></span>
             </div>
             <div class="col">
-                <span>Paard: </span><span id="info_Horse"></span>
+                <span>Paard: </span><span id="info_horse"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <span id="no_jumpsport" class="badge badge-danger" hidden>❗ Paard niet beschikbaar voor springsport!</span>
+                <span id="info_no_jumpsport" class="badge badge-danger" hidden>❗ Pony niet beschikbaar voor springsport!</span>
             </div>
             <div class="col">
-                <span id="not_available" class="badge badge-danger" hidden>❗ Paard niet beschikbaar van %START_TIME% tot %END_TIME%!</span>
+                <span id="info_not_available" class="badge badge-danger" hidden>❗ Paard niet beschikbaar van <span id="info_start_time"></span> tot <span id="info_end_time"></span>!</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <span>Prijs: €<span id="info_price">0</span>,-</span>
             </div>
         </div>
 
