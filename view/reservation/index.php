@@ -27,7 +27,7 @@ if (isset($reservations)) $reservations = $reservations;
             <tr>
                 <th scope="row"><?= $reservation['id'] ?></th>
                 <th scope="row"><?= getDataById("member", $reservation['member_id'])['name'] ?></th>
-                <th scope="row"><?= $reservation['horse_id'] ?></th>
+                <th scope="row"><?= getDataById("horse", $reservation['horse_id'])['name'] ?></th>
                 <th scope="row"><?= date_format(new DateTime($reservation['start_time']), 'd M H:i') ?></th>
                 <th scope="row"><?= $reservation['duration'] ?> minuten</th>
             </tr>

@@ -1,8 +1,8 @@
 <?php
 
 require(ROOT . "model/ReservationModel.php");
-require(ROOT . "model/HorseModel.php");
-require(ROOT . "model/MemberModel.php");
+require_once(ROOT . "model/HorseModel.php");
+require_once(ROOT . "model/MemberModel.php");
 
 function index()
 {

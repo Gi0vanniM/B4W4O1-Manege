@@ -1,14 +1,16 @@
 <?php
 
 require(ROOT . "model/HorseModel.php");
+require_once(ROOT . "model/ReservationModel.php");
 
 function index()
 {
     render('horse/index', ['horses' => getAllHorses()]);
 }
 
-function detail($id) {
-    render('horse/detail', ['horse' => getHorseById($id)]);
+function detail($id)
+{
+    render('horse/detail', ['horse' => getHorseById($id), 'reservations' => getReservationByHorseId($id)]);
 }
 
 function add()

@@ -15,7 +15,7 @@ if (isset($reservations)) $reservations = $reservations;
             <div class="col">
                 <!-- RUITER // MEMBER -->
                 <label class="col-form-label" for="ruiter">Ruiter:</label>
-                <select class="form-control" name="member_id" id="ruiter">
+                <select class="form-control" name="member_id" id="ruiter" required>
                     <option value="">- selecteer ruiter -</option>
                     <?php foreach ($members as $member) { ?>
                         <option value="<?= $member['id'] ?>"><?= $member['name'] ?></option>
@@ -26,7 +26,7 @@ if (isset($reservations)) $reservations = $reservations;
             <div class="col">
                 <!-- PAARD // HORSE -->
                 <label class="col-form-label" for="paard">Paard:</label>
-                <select class="form-control" name="horse_id" id="paard">
+                <select class="form-control" name="horse_id" id="paard" required>
                     <option value="">- selecteer paard -</option>
                     <?php foreach ($horses as $horse) { ?>
                         <option value="<?= $horse['id'] ?>"><?= $horse['name'] ?></option>
@@ -45,7 +45,7 @@ if (isset($reservations)) $reservations = $reservations;
 
         <label for="duration" class="col-form-label">Duur:</label>
         <span class="col-form-label float-right">Kosten zijn €<?= COST_PER_HOUR ?> per uur</span>
-        <select name="duration" id="duration" class="form-control">
+        <select name="duration" id="duration" class="form-control" required>
             <option value="">- selecteer duur -</option>
             <?php for ($i = 1; $i <= MAX_TIME; $i++) { ?>
                 <option value="<?= 60 * $i; ?>"><?= 60 * $i; ?> minuten</option>
@@ -62,6 +62,15 @@ if (isset($reservations)) $reservations = $reservations;
             </div>
             <div class="col">
                 <span>Paard: </span><span id="info_Horse"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <span id="no_jumpsport" class="badge badge-danger" hidden>❗ Paard niet beschikbaar voor springsport!</span>
+            </div>
+            <div class="col">
+                <span id="not_available" class="badge badge-danger" hidden>❗ Paard niet beschikbaar van %START_TIME% tot %END_TIME%!</span>
             </div>
         </div>
 

@@ -1,5 +1,6 @@
 <?php
 if (isset($horse)) $horse = $horse;
+if (isset($reservations)) $reservations = $reservations;
 ?>
 
 <div class="container">
@@ -9,7 +10,7 @@ if (isset($horse)) $horse = $horse;
         <h1 class="text-white text-center"><?= $horse['name'] ?></h1>
         <div class="row m-0 text-white">
             <?php if (!empty($horse['image'])) { ?><img class="col-6 h-50"
-                                                        src="<?= URL ?>images/<?= $horse['image'] ?>"
+                                                        src="<?= URL ?>public/images/<?= $horse['image'] ?>"
                                                         alt=""><?php } ?>
             <div class="col-6">
                 <h5 class=""><?= $horse['type'] ?></h5>

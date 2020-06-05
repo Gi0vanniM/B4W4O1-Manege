@@ -44,6 +44,7 @@ function modelAddHorse($data)
             $$key = sanitize($value);
         }
         $image = $_FILES['image'];
+        $imageName = (empty($image['name'])) ? null : $image['name'];
 
         $stmt = $pdo->prepare("INSERT INTO horses (name, race, age, wither_height, type, image) VALUES (:name, :race, :age, :wither_height, :type, :image)");
         $stmt->bindParam(":name", $name);
@@ -51,10 +52,13 @@ function modelAddHorse($data)
         $stmt->bindParam(":age", $age);
         $stmt->bindParam(":wither_height", $wither_height);
         $stmt->bindParam(":type", $type);
-        $stmt->bindParam(":image", $image['name']);
+        $stmt->bindParam(":image", $imageName);
         $stmt->execute();
 
-        if ($stmt) $success = true;
+        if ($stmt) {
+            $success = true;
+            if (isset($image)) uploadImage($image);
+        }
 
     } catch (PDOException $e) {
         echo "Adding horse failed: " . $e->getMessage();

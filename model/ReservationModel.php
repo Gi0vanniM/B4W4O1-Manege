@@ -32,6 +32,21 @@ function getReservationById($id)
     return $stmt->fetch();
 }
 
+function getReservationByHorseId($id)
+{
+    sanitize($id);
+    try {
+        $pdo = openDatabaseConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM reservations WHERE horse_id=?");
+        $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        echo "Error obtaining reservation(s): " . $e->getMessage();
+    }
+    $pdo = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function modelReserveHorse($data)
 {
     $success = false;
