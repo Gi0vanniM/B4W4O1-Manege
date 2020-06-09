@@ -1,6 +1,6 @@
 <?php
 if (isset($title)) {
-    $title = $title . " Manege App";
+    $title = $title . " - Manege App";
 } else {
     $title = "Manege App";
 }

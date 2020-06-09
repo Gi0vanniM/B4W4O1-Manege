@@ -6,12 +6,12 @@ require_once(ROOT . "model/MemberModel.php");
 
 function index()
 {
-    render('reservation/index', ['reservations' => getAllReservations()]);
+    render('reservation/index', ['reservations' => getAllReservations(), 'title' => 'Reserveringen']);
 }
 
 function reserve()
 {
-    render("reservation/reserve", ['horses' => getAllHorses(), 'members' => getAllMembers(), 'reservations' => getAllReservations()]);
+    render("reservation/reserve", ['horses' => getAllHorses(), 'members' => getAllMembers(), 'reservations' => getAllReservations(), 'title' => 'Reserveren']);
 }
 
 function registerReservation()

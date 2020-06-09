@@ -4,12 +4,12 @@ require(ROOT . "model/MemberModel.php");
 
 function index()
 {
-    render("member/index", ['members' => getAllMembers()]);
+    render("member/index", ['members' => getAllMembers(), 'title' => 'Ruiters']);
 }
 
 function register()
 {
-    render("member/register");
+    render("member/register", ['title' => 'Registreer']);
 }
 
 function registerMember()

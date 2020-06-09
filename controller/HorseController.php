@@ -5,12 +5,12 @@ require_once(ROOT . "model/ReservationModel.php");
 
 function index()
 {
-    render('horse/index', ['horses' => getAllHorses()]);
+    render('horse/index', ['horses' => getAllHorses(), 'title' => 'Paarden']);
 }
 
 function detail($id)
 {
-    render('horse/detail', ['horse' => getHorseById($id), 'reservations' => getReservationByHorseId($id)]);
+    render('horse/detail', ['horse' => getHorseById($id), 'reservations' => getReservationByHorseId($id), 'title' => getHorseById($id)['name']]);
 }
 
 function add()

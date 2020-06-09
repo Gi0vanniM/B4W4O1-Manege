@@ -6,7 +6,7 @@ if (isset($reservations)) $reservations = $reservations;
 
 <div class="container">
 
-    <form class="" action="registerReservation" method="post">
+    <form class="mt-3" action="registerReservation" method="post">
 
         <h2>Paard reserveren</h2>
 
@@ -51,10 +51,35 @@ if (isset($reservations)) $reservations = $reservations;
                 <option value="<?= 60 * $i; ?>"><?= 60 * $i; ?> minuten</option>
             <?php } ?>
         </select>
-        <input class="mt-3 btn border-primary" type="submit" value="Reserveer">
+
+        <input id="submitButton" class="mt-3 btn border-primary" type="submit" value="Reserveer" disabled>
+
+        <!-- Modal menu to view the reservations of the horse selected -->
+        <button id="modal_button" type="button" class=" mt-3 btn btn-primary float-right" data-toggle="modal"
+                data-target="#horseReservationModal" disabled>
+            Bekijk Paard Reserveringen
+        </button>
+        <div class="modal fade" id="horseReservationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Reserveringen van <span id="modal_horse"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modal_text">
+                        . . .
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </form>
 
-    <div class="bg-primary mt-5 text-white">
+    <!-- info screen of the reservation -->
+    <div class="bg-primary mt-5 text-white p-3 rounded">
 
         <div class="row">
             <div class="col">
@@ -67,10 +92,14 @@ if (isset($reservations)) $reservations = $reservations;
 
         <div class="row">
             <div class="col">
-                <span id="info_no_jumpsport" class="badge badge-danger" hidden>❗ Pony niet beschikbaar voor springsport!</span>
+                <div id="info_no_jumpsport" class="badge badge-danger" hidden>❗ Pony niet beschikbaar voor
+                    springsport!
+                </div>
             </div>
             <div class="col">
-                <span id="info_not_available" class="badge badge-danger" hidden>❗ Paard niet beschikbaar van <span id="info_start_time"></span> tot <span id="info_end_time"></span>!</span>
+                <div id="info_not_available" class="badge badge-danger" hidden>❗ Paard niet beschikbaar van <span
+                            id="info_not_start_time"></span> tot <span id="info_not_end_time"></span>!
+                </div>
             </div>
         </div>
 
@@ -80,9 +109,18 @@ if (isset($reservations)) $reservations = $reservations;
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <span>Tijd: van <span id="info_start_time">--:--</span> tot <span id="info_end_time">--:--</span></span>
+            </div>
+            <div class="col">
+                <span> Datum: <span id="info_date">-</span></span>
+            </div>
+        </div>
+
     </div>
 
-
+    <!-- send information so javascript can use it -->
     <script>
         let reservations = <?= json_encode($reservations) ?>;
         let horses = <?= json_encode($horses) ?>;
