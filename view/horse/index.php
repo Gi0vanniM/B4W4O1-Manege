@@ -11,6 +11,7 @@ if (isset($horses)) $horses = $horses;
 
         <?php foreach ($horses as $horse) { ?>
             <a href="horse/detail/<?= $horse['id'] ?>" class="card h-100 text-decoration-none text-body bg-light">
+                <div class="horse-card ml-2 mt-1">#<?= $horse['id'] ?></div>
                 <?php if (!empty($horse['image'])) { ?><img class="card-img img-fluid"
                                                             src="<?= URL ?>public/images/<?= $horse['image'] ?>"
                                                             alt=""><?php } ?>

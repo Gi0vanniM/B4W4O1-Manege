@@ -92,8 +92,8 @@ if (isset($reservations)) $reservations = $reservations;
 
         <div class="row">
             <div class="col">
-                <div id="info_no_jumpsport" class="badge badge-danger" hidden>❗ Pony niet beschikbaar voor
-                    springsport!
+                <div id="info_no_jumpsport" class="badge badge-danger" hidden data-toggle="tooltip" data-placement="top" title="<?= VERSCHIL_PAARD_EN_PONY ?>">
+                    ❗ Pony niet beschikbaar voor springsport!
                 </div>
             </div>
             <div class="col">

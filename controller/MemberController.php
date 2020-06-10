@@ -22,3 +22,23 @@ function registerMember()
         echo "Invalid data received.";
     }
 }
+
+function update($id)
+{
+    render('member/update', ['member' => getMemberById($id), 'title' => "Update " . getMemberById($id)['name']]);
+}
+
+function updateMember()
+{
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+}
+
+function delete($id)
+{
+    render('member/delete', ['member' => getMemberById($id), 'title' => "Deleting " . getMemberById($id)['name']]);
+}
+
+function deleteMember()
+{
+//
+}

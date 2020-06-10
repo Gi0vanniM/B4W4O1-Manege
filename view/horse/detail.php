@@ -5,8 +5,8 @@ if (isset($reservations)) $reservations = $reservations;
 
 <div class="container">
 
-    <div class="m-5 bg-primary rounded">
-
+    <div class="m-5 bg-primary rounded pb-2">
+        <div class="horse-card ml-2 mt-1">#<?= $horse['id'] ?></div>
         <h1 class="text-white text-center"><?= $horse['name'] ?></h1>
         <div class="row m-0 text-white">
             <?php if (!empty($horse['image'])) { ?><img class="col-6 h-50"
@@ -22,9 +22,38 @@ if (isset($reservations)) $reservations = $reservations;
             </div>
         </div>
         <div class="row m-0 text-white">
+            <div class="col-6">
+                <h4 class="ml-3">Reserveringen:</h4>
+                <?php if (!empty($reservations)) { ?>
 
-            <h4 class="ml-3">Reserveringen:</h4>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Van</th>
+                            <th scope="col">Tot</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($reservations as $reservation) { ?>
+                            <tr>
+                                <th scope="row"><?= date_format(new DateTime($reservation['start_time']), 'd M H:i') ?></th>
+                                <th scope="row"><?= date_add(new DateTime($reservation['start_time']), new DateInterval('PT' . $reservation['duration'] . 'M'))->format('H:i') ?></th>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } else { ?>
+                <h5 class="ml-3">Geen reserveringen.</h5>
+                <?php } ?>
+            </div>
 
+            <?php if ($horse['type'] == 'pony') { ?>
+                <div class="col">
+                    <div id="info_no_jumpsport" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="<?= VERSCHIL_PAARD_EN_PONY ?>">
+                        ❗ Pony niet beschikbaar voor springsport!
+                    </div>
+                </div>
+            <?php } ?>
         </div>
 
     </div>

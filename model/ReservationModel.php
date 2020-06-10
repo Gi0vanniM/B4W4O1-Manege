@@ -2,12 +2,16 @@
 
 require_once("../helpers/functions.php");
 
-function getAllReservations()
+function getAllReservations($all = false)
 {
     try {
         $pdo = openDatabaseConnection();
 
-        $stmt = $pdo->prepare("SELECT * FROM reservations");
+        $query = "SELECT * FROM reservations WHERE DATE_ADD(start_time, INTERVAL duration MINUTE) >= NOW() ORDER BY start_time";
+
+        if ($all) $query = "SELECT * FROM reservations ORDER BY start_time";
+
+        $stmt = $pdo->prepare($query);
         $stmt->execute();
     } catch (PDOException $e) {
         echo "Error obtaining reservations: " . $e->getMessage();
@@ -32,13 +36,17 @@ function getReservationById($id)
     return $stmt->fetch();
 }
 
-function getReservationByHorseId($id)
+function getReservationByHorseId($id, $all = false)
 {
     sanitize($id);
     try {
         $pdo = openDatabaseConnection();
 
-        $stmt = $pdo->prepare("SELECT * FROM reservations WHERE horse_id=?");
+        $query = "SELECT * FROM reservations WHERE DATE_ADD(start_time, INTERVAL duration MINUTE) >= NOW() AND horse_id=?";
+
+        if ($all) $query = "SELECT * FROM reservations WHERE horse_id=?";
+
+        $stmt = $pdo->prepare($query);
         $stmt->execute([$id]);
     } catch (PDOException $e) {
         echo "Error obtaining reservation(s): " . $e->getMessage();
@@ -59,7 +67,24 @@ function modelReserveHorse($data)
             $$key = sanitize($value);
         }
 
-        $start_time = date('Y-m-d H:i:s', strtotime("$date $time"));
+        $validTime = 0;
+
+        $start_time = date(SQL_TIME_FORMAT, strtotime("$date $time"));
+
+        $dateTime = new DateTime($start_time);
+        $endTime = date_add(new DateTime($start_time), new DateInterval('PT' . $duration . 'M'));
+
+        $otherReservations = getReservationByHorseId($horse_id);
+        foreach ($otherReservations as $otherRes) {
+            $otherDateTime = new DateTime($otherRes['start_time']);
+            $otherEndTime = date_add(new DateTime($otherRes['start_time']), new DateInterval('PT' . $otherRes['duration'] . 'M'));
+
+            if ($endTime <= $otherDateTime || $dateTime >= $otherEndTime) {
+                echo "Valid Date and Time!";
+            } else {
+                exit("Error: Reservation interferes with another reservation. #" . $otherRes['id'] . " from " . $otherDateTime->format(TIME_FORMAT) . " to " . $otherEndTime->format(TIME_FORMAT) . ".");
+            }
+        }
 
         $stmt = $pdo->prepare("INSERT INTO reservations (member_id, horse_id, start_time, duration) VALUES (:member_id, :horse_id, :start_time, :duration)");
         $stmt->bindParam(":member_id", $member_id);

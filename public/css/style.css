@@ -1,0 +1,4 @@
+.horse-card {
+    position: absolute;
+    filter: invert(100%);
+}

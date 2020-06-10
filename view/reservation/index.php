@@ -8,7 +8,8 @@ if (isset($reservations)) $reservations = $reservations;
 
     <div class="row m-0">
         <h2 class="col my-2 p-0 pl-2">Reserveringen</h2>
-        <a class="btn btn-primary float-right m-2" href="reservation/reserve">Reserveer</a>
+        <a class="btn btn-sm btn-dark float-right m-2" href="<?= URL ?>reservation/index/all">Alle</a>
+        <a class="btn btn-primary float-right m-2" href="<?= URL ?>reservation/reserve">Reserveer</a>
     </div>
 
     <table class="table table-hover table-striped">

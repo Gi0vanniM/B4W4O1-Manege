@@ -28,3 +28,23 @@ function addHorse()
         echo "Invalid data received.";
     }
 }
+
+function update($id)
+{
+    render('horse/update', ['horse' => getHorseById($id), 'title' => "Update " . getHorseById($id)['name']]);
+}
+
+function updateHorse()
+{
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+}
+
+function delete($id)
+{
+    render('horse/delete', ['horse' => getHorseById($id), 'title' => "Deleting " . getHorseById($id)['name']]);
+}
+
+function deleteHorse()
+{
+//
+}
