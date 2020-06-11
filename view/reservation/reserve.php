@@ -130,3 +130,9 @@ if (isset($reservations)) $reservations = $reservations;
 
 </div>
 
+<!-- Enable tooltips with jQuery -->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

@@ -37,6 +37,12 @@ function update($id)
 function updateHorse()
 {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelUpdateHorse($_POST)) {
+//        header("Location: " . URL . "horse");
+    } else {
+        echo "Invalid data received.";
+    }
 }
 
 function delete($id)

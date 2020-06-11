@@ -5,7 +5,7 @@ if (isset($reservations)) $reservations = $reservations;
 
 <div class="container">
 
-    <div class="m-5 bg-primary rounded pb-2">
+    <div class="m-5 bg-primary rounded">
         <div class="horse-card ml-2 mt-1">#<?= $horse['id'] ?></div>
         <h1 class="text-white text-center"><?= $horse['name'] ?></h1>
         <div class="row m-0 text-white">
@@ -43,17 +43,24 @@ if (isset($reservations)) $reservations = $reservations;
                         </tbody>
                     </table>
                 <?php } else { ?>
-                <h5 class="ml-3">Geen reserveringen.</h5>
+                    <h5 class="ml-3">Geen reserveringen.</h5>
                 <?php } ?>
             </div>
 
             <?php if ($horse['type'] == 'pony') { ?>
                 <div class="col">
-                    <div id="info_no_jumpsport" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="<?= VERSCHIL_PAARD_EN_PONY ?>">
+                    <div id="info_no_jumpsport" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                         title="<?= VERSCHIL_PAARD_EN_PONY ?>">
                         ❗ Pony niet beschikbaar voor springsport!
                     </div>
                 </div>
             <?php } ?>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-warning text-white float-right mb-1 mr-1" href="<?= URL ?>horse/update/<?= $horse['id'] ?>">Update</a>
+            </div>
         </div>
 
     </div>

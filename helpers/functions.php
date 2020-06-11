@@ -38,6 +38,7 @@ function uploadImage($image)
     if (file_exists($target_file)) {
         echo "File already exists.";
         $uploadOk = 0;
+        return "exists";
     }
 
     // check file size
@@ -57,9 +58,10 @@ function uploadImage($image)
     } else {
         if (move_uploaded_file($image['tmp_name'], $target_file)) {
             echo "File " . basename($image['name']) . " has been uploaded.";
+            return "uploaded";
         } else {
             echo "There was an error uploading the file.";
         }
     }
-
+    return false;
 }

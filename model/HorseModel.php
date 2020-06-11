@@ -67,3 +67,44 @@ function modelAddHorse($data)
 
     return $success;
 }
+
+function modelUpdateHorse($data)
+{
+    $success = false;
+
+    try {
+        $pdo = openDatabaseConnection();
+
+        foreach ($data as $key => $value) {
+            if (empty($value)) exit("$key was not filled in");
+            $$key = sanitize($value);
+        }
+        $uploaded = false;
+        if (!empty($_FILES['image']['name'])) {
+            $uploaded = uploadImage($_FILES['image']);
+        }
+
+        $sqlImage = ($uploaded == "uploaded" || $uploaded == "exists") ? ", image=:image " : " ";
+
+        $query = "UPDATE horses SET name=:name, race=:race, age=:age, wither_height=:wither_height, type=:type" . $sqlImage . "WHERE id=:id";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":race", $race);
+        $stmt->bindParam(":age", $age);
+        $stmt->bindParam(":wither_height", $wither_height);
+        $stmt->bindParam(":type", $type);
+        if ($uploaded == "uploaded" || $uploaded == "exists") $stmt->bindParam(":image", $_FILES['image']['name']);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if ($stmt) {
+            $success = true;
+        }
+    } catch (PDOException $e) {
+        echo "Failed to update: " . $e->getMessage();
+    }
+    $pdo = null;
+
+    return $success;
+}
