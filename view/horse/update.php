@@ -32,6 +32,8 @@ if (isset($horse)) $horse = $horse;
         <label for="image" class="col-form-label">Foto:</label>
         <input type="file" name="image" id="image" class="form-control"">
 
-        <input type="submit" class="btn btn-primary mt-3" value="Registreer">
+        <input type="submit" class="btn btn-warning mt-3" value="Bewerk">
+        <a class=" btn btn-danger text-white float-right mt-3 mb-1"
+           href="<?= URL ?>horse/delete/<?= $horse['id'] ?>">Verwijder</a>
     </form>
 </div>

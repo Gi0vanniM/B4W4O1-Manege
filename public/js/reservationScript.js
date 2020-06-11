@@ -16,6 +16,9 @@ let modalText = document.getElementById("modal_text");
 let modalHorse = document.getElementById("modal_horse");
 let modalButton = document.getElementById("modal_button");
 
+
+let reservationId = (typeof reservation !== "undefined") ? reservation.toString() : null;
+
 update();
 
 document.addEventListener("change", update);
@@ -32,6 +35,7 @@ function update() {
     let resText = "";
 
     let validTime = false;
+
 
     // member stuff
     if (member) {
@@ -57,23 +61,27 @@ function update() {
                 let rEndTime = new Date(rDateTime.getTime() + item['duration'] * 60000);
                 // item['end_time'] = rEndTime;
 
-                // check if times overlap if not validTime will be true otherwise it will display a message
-                if (!isNaN(dateTime)) {
-                    if (endTime <= rDateTime || dateTime >= rEndTime) {
-                        infoNotAvailable.hidden = true;
-                        // submitButton.disabled = false;
-                        validTime = true;
-                    } else {
-                        validTime = false;
-                        infoNotAvailable.hidden = false;
-                        submitButton.disabled = true;
-                        infoNotStartTime.innerText = stringDateTime(rDateTime);
-                        infoNotEndTime.innerText = stringDateTime(rEndTime);
+                // check if the current reservation in the forEach loop is the reservation were update (if we are updating)
+                if (item['id'] !== reservationId) {
+                    // check if times overlap if not validTime will be true otherwise it will display a message
+                    if (!isNaN(dateTime)) {
+                        if (endTime <= rDateTime || dateTime >= rEndTime) {
+                            infoNotAvailable.hidden = true;
+                            // submitButton.disabled = false;
+                            validTime = true;
+                        } else {
+                            validTime = false;
+                            infoNotAvailable.hidden = false;
+                            submitButton.disabled = true;
+                            infoNotStartTime.innerText = stringDateTime(rDateTime);
+                            infoNotEndTime.innerText = stringDateTime(rEndTime);
+                        }
                     }
                 }
                 // print horse reservations
                 if (rDateTime >= Date.now() || rEndTime >= Date.now()) {
-                    resText += `${stringDateTime(rDateTime)} tot ${stringTime(rEndTime)} \n`;
+                    let current = (item['id'] !== reservationId) ? "" : "currently updating";
+                    resText += `${stringDateTime(rDateTime)} tot ${stringTime(rEndTime)} ` + current + `\n`;
                 }
 
             })
@@ -119,9 +127,7 @@ function update() {
         submitButton.disabled = true;
     }
 
-
 }
-
 
 function addZero(i) {
     if (i < 10) {

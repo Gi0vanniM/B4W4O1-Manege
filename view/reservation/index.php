@@ -20,6 +20,7 @@ if (isset($reservations)) $reservations = $reservations;
             <th scope="col">Paard</th>
             <th scope="col">Start tijd</th>
             <th scope="col">Duur</th>
+            <th scope="col"></th>
         </tr>
         </thead>
 
@@ -31,6 +32,8 @@ if (isset($reservations)) $reservations = $reservations;
                 <th scope="row"><?= getDataById("horse", $reservation['horse_id'])['name'] ?></th>
                 <th scope="row"><?= date_format(new DateTime($reservation['start_time']), 'd M H:i') ?></th>
                 <th scope="row"><?= $reservation['duration'] ?> minuten</th>
+                <th scope="row"><a class="btn btn-warning text-white float-right mr-1"
+                                   href="<?= URL ?>reservation/update/<?= $reservation['id'] ?>">Update</a></th>
             </tr>
 
         <?php } ?>

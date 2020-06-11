@@ -9,7 +9,7 @@ if (isset($reservations)) $reservations = $reservations;
         <div class="horse-card ml-2 mt-1">#<?= $horse['id'] ?></div>
         <h1 class="text-white text-center"><?= $horse['name'] ?></h1>
         <div class="row m-0 text-white">
-            <?php if (!empty($horse['image'])) { ?><img class="col-6 h-50"
+            <?php if (!empty($horse['image'])) { ?><img class="col-6 h-50 rounded"
                                                         src="<?= URL ?>public/images/<?= $horse['image'] ?>"
                                                         alt=""><?php } ?>
             <div class="col-6">
@@ -59,7 +59,8 @@ if (isset($reservations)) $reservations = $reservations;
 
         <div class="row">
             <div class="col">
-                <a class="btn btn-warning text-white float-right mb-1 mr-1" href="<?= URL ?>horse/update/<?= $horse['id'] ?>">Update</a>
+                <a class="btn btn-warning text-white float-right mb-1 mr-1"
+                   href="<?= URL ?>horse/update/<?= $horse['id'] ?>">Update</a>
             </div>
         </div>
 

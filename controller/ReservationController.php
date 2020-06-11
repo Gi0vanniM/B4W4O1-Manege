@@ -27,7 +27,7 @@ function registerReservation()
 
 function update($id)
 {
-    render('reservation/update', ['reservation' => getReservationById($id), 'title' => "Update reservation #" . $id]);
+    render('reservation/update', ['reservation' => getReservationById($id), "reservations" => getAllReservations(), "members" => getAllMembers(), "horses" => getAllHorses(), 'title' => "Update reservation #" . $id]);
 }
 
 function updateReservation()

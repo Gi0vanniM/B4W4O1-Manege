@@ -14,6 +14,7 @@ if (isset($members)) $members = $members;
             <th scope="col">Naam</th>
             <th scope="col">Adres</th>
             <th scope="col">Telefoon nummer</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +24,8 @@ if (isset($members)) $members = $members;
                 <th scope="row"><?= $member['name'] ?></th>
                 <th scope="row"><?= $member['address'] ?></th>
                 <th scope="row"><?= $member['phone'] ?></th>
+                <th scope="row"><a class="btn btn-warning text-white float-right mr-1"
+                                   href="<?= URL ?>member/update/<?= $member['id'] ?>">Update</a></th>
             </tr>
         <?php } ?>
         </tbody>

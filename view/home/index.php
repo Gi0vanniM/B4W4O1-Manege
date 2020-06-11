@@ -4,7 +4,7 @@
 
     <a class="btn btn-success" href="<?= URL ?>horse">Paarden</a>
 
-    <a class="btn btn-success" href="<?= URL ?>reserve">Reserveer een paard</a>
+    <a class="btn btn-success" href="<?= URL ?>reservation">Reserveer een paard</a>
     <a class="btn btn-success" href="<?= URL ?>member/register">Regristreer</a>
 
 </div>
