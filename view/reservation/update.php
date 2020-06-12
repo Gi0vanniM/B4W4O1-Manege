@@ -11,9 +11,12 @@ $time = $dateTime->format("H:i");
 
 <div class="container">
 
-    <form class="mt-3" action="<?= URL ?>reservation/updateReservation" method="post">
+    <form class="mt-3" name="updateReservation" action="<?= URL ?>reservation/updateReservation" method="post">
 
         <h2>Reservering bewerken</h2>
+
+        <!-- SEND ID -->
+        <input type="hidden" name="id" value="<?= $reservation['id'] ?>">
 
         <div class="row">
 
@@ -62,7 +65,7 @@ $time = $dateTime->format("H:i");
             <?php } ?>
         </select>
 
-        <input id="submitButton" class="mt-3 btn border-warning" type="submit" value="Reserveer" disabled>
+        <input id="submitButton" class="mt-3 btn border-warning" type="submit" value="Bewerk" disabled>
         <a class=" btn btn-danger text-white float-right ml-1 mt-3 mb-1"
            href="<?= URL ?>reservation/delete/<?= $reservation['id'] ?>">Verwijder</a>
 

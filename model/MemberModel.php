@@ -41,7 +41,7 @@ function modelRegisterMember($data)
 
         foreach ($data as $key => $value) {
             if (empty($value)) exit("$key was not filled in.");
-                $$key = sanitize($value);
+            $$key = sanitize($value);
         }
 
         $stmt = $pdo->prepare("INSERT INTO members (name, address, phone) VALUES (:name, :address, :phone)");
@@ -54,6 +54,58 @@ function modelRegisterMember($data)
 
     } catch (PDOException $e) {
         echo "Registering member failed: " . $e->getMessage();
+    }
+    $pdo = null;
+
+    return $success;
+}
+
+function modelUpdateMember($data)
+{
+    $success = false;
+
+    try {
+        $pdo = openDatabaseConnection();
+
+        foreach ($data as $key => $value) {
+            if (empty($value)) exit("$key was not filled in.");
+            $$key = sanitize($value);
+        }
+
+        $stmt = $pdo->prepare("UPDATE members SET name=:name, address=:address, phone=:phone WHERE id=:id");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if ($stmt) $success = true;
+
+    } catch (PDOException $e) {
+        echo "Updating member failed: " . $e->getMessage();
+    }
+
+    $pdo = null;
+
+    return $success;
+}
+
+function modelDeleteMember($id)
+{
+    $success = false;
+
+    try {
+        $pdo = openDatabaseConnection();
+
+        $id = sanitize($id);
+
+        $stmt = $pdo->prepare("DELETE FROM members WHERE id=?");
+        $stmt->execute([$id]);
+
+        if ($stmt) $success = true;
+
+    } catch (PDOException $e) {
+        echo "Failed to delete: " . $e->getMessage();
     }
     $pdo = null;
 

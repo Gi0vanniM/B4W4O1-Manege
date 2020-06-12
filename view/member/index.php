@@ -20,12 +20,12 @@ if (isset($members)) $members = $members;
         <tbody>
         <?php foreach ($members as $member) { ?>
             <tr>
-                <th scope="row"><?= $member['id'] ?></th>
-                <th scope="row"><?= $member['name'] ?></th>
-                <th scope="row"><?= $member['address'] ?></th>
-                <th scope="row"><?= $member['phone'] ?></th>
-                <th scope="row"><a class="btn btn-warning text-white float-right mr-1"
-                                   href="<?= URL ?>member/update/<?= $member['id'] ?>">Update</a></th>
+                <td scope="row"><?= $member['id'] ?></td>
+                <td scope="row"><?= $member['name'] ?></td>
+                <td scope="row"><?= $member['address'] ?></td>
+                <td scope="row"><?= $member['phone'] ?></td>
+                <td scope="row"><a class="btn btn-warning text-white float-right mr-1"
+                                   href="<?= URL ?>member/update/<?= $member['id'] ?>">Update</a></td>
             </tr>
         <?php } ?>
         </tbody>

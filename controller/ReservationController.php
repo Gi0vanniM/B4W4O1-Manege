@@ -33,6 +33,12 @@ function update($id)
 function updateReservation()
 {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelUpdateReservation($_POST)) {
+        header("Location: " . URL . "reservation");
+    } else {
+        echo "Update failed.";
+    }
 }
 
 function delete($id)
@@ -40,7 +46,13 @@ function delete($id)
     render('reservation/delete', ['reservation' => getReservationById($id), 'title' => "Deleting reservation #" . $id]);
 }
 
-function deleteReservation()
+function deleteReservation($id)
 {
-//
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelDeleteReservation($id)) {
+        header("Location: " . URL . "reservation");
+    } else {
+        echo "Update failed.";
+    }
 }

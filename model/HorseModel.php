@@ -108,3 +108,25 @@ function modelUpdateHorse($data)
 
     return $success;
 }
+
+function modelDeleteHorse($id)
+{
+    $success = false;
+
+    try {
+        $pdo = openDatabaseConnection();
+
+        $id = sanitize($id);
+
+        $stmt = $pdo->prepare("DELETE FROM horses WHERE id=?");
+        $stmt->execute([$id]);
+
+        if ($stmt) $success = true;
+
+    } catch(PDOException $e) {
+        echo "Failed to delete: " . $e->getMessage();
+    }
+    $pdo = null;
+
+    return $success;
+}

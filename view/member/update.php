@@ -5,7 +5,9 @@ if (isset($member)) $member = $member;
 
     <h2 class="mt-3">Ruiter bijwerken</h2>
 
-    <form class="" name="update" method="post" action="<?= URL ?>member/updateMember">
+    <form class="" name="updateMember" method="post" action="<?= URL ?>member/updateMember">
+
+        <input type="hidden" name="id" value="<?= $member['id'] ?>">
 
         <label for="name" class="col-form-label">Naam:</label>
         <input type="text" name="name" id="name" class="form-control" value="<?= $member['name'] ?>" required>

@@ -27,13 +27,13 @@ if (isset($reservations)) $reservations = $reservations;
         <tbody>
         <?php foreach ($reservations as $reservation) { ?>
             <tr>
-                <th scope="row"><?= $reservation['id'] ?></th>
-                <th scope="row"><?= getDataById("member", $reservation['member_id'])['name'] ?></th>
-                <th scope="row"><?= getDataById("horse", $reservation['horse_id'])['name'] ?></th>
-                <th scope="row"><?= date_format(new DateTime($reservation['start_time']), 'd M H:i') ?></th>
-                <th scope="row"><?= $reservation['duration'] ?> minuten</th>
-                <th scope="row"><a class="btn btn-warning text-white float-right mr-1"
-                                   href="<?= URL ?>reservation/update/<?= $reservation['id'] ?>">Update</a></th>
+                <td scope="row"><?= $reservation['id'] ?></td>
+                <td scope="row"><?= getDataById("member", $reservation['member_id'])['name'] ?></td>
+                <td scope="row"><?= getDataById("horse", $reservation['horse_id'])['name'] ?></td>
+                <td scope="row"><?= date_format(new DateTime($reservation['start_time']), 'd M H:i') ?></td>
+                <td scope="row"><?= $reservation['duration'] ?> minuten</td>
+                <td scope="row"><a class="btn btn-warning text-white float-right mr-1"
+                                   href="<?= URL ?>reservation/update/<?= $reservation['id'] ?>">Update</a></td>
             </tr>
 
         <?php } ?>

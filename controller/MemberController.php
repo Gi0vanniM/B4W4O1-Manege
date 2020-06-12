@@ -31,6 +31,12 @@ function update($id)
 function updateMember()
 {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelUpdateMember($_POST)) {
+        header("Location: " . URL . "member");
+    } else {
+        echo "Update failed.";
+    }
 }
 
 function delete($id)
@@ -38,7 +44,13 @@ function delete($id)
     render('member/delete', ['member' => getMemberById($id), 'title' => "Deleting " . getMemberById($id)['name']]);
 }
 
-function deleteMember()
+function deleteMember($id)
 {
-//
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelDeleteMember($id)) {
+        header("Location: " . URL . "member");
+    } else {
+        echo "Update failed.";
+    }
 }

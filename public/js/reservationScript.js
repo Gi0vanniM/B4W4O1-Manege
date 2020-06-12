@@ -78,6 +78,7 @@ function update() {
                         }
                     }
                 }
+                else if (item['id'] === reservationId) validTime = true;
                 // print horse reservations
                 if (rDateTime >= Date.now() || rEndTime >= Date.now()) {
                     let current = (item['id'] !== reservationId) ? "" : "currently updating";

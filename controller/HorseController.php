@@ -39,7 +39,7 @@ function updateHorse()
     if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
 
     if (modelUpdateHorse($_POST)) {
-//        header("Location: " . URL . "horse");
+        header("Location: " . URL . "horse");
     } else {
         echo "Invalid data received.";
     }
@@ -50,7 +50,13 @@ function delete($id)
     render('horse/delete', ['horse' => getHorseById($id), 'title' => "Deleting " . getHorseById($id)['name']]);
 }
 
-function deleteHorse()
+function deleteHorse($id)
 {
-//
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') echo "No data received.";
+
+    if (modelDeleteHorse($id)) {
+        header("Location: " . URL . "horse");
+    } else {
+        echo "Invalid data received.";
+    }
 }
