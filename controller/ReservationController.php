@@ -1,6 +1,6 @@
 <?php
 
-require(ROOT . "model/ReservationModel.php");
+require_once(ROOT . "model/ReservationModel.php");
 require_once(ROOT . "model/HorseModel.php");
 require_once(ROOT . "model/MemberModel.php");
 

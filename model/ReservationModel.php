@@ -55,6 +55,25 @@ function getReservationByHorseId($id, $all = false)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getReservationByMemberId($id, $all = false)
+{
+    sanitize($id);
+    try {
+        $pdo = openDatabaseConnection();
+
+        $query = "SELECT * FROM reservations WHERE DATE_ADD(start_time, INTERVAL duration MINUTE) >= NOW() AND member_id=?";
+
+        if ($all) $query = "SELECT * FROM reservations WHERE member_id=?";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        echo "Error obtaining reservation(s): " . $e->getMessage();
+    }
+    $pdo = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function modelReserveHorse($data)
 {
     $success = false;

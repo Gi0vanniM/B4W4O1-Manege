@@ -1,6 +1,7 @@
 <?php
 
 require_once("../helpers/functions.php");
+require_once("ReservationModel.php");
 
 function getAllMembers()
 {
@@ -102,7 +103,13 @@ function modelDeleteMember($id)
         $stmt = $pdo->prepare("DELETE FROM members WHERE id=?");
         $stmt->execute([$id]);
 
-        if ($stmt) $success = true;
+        if ($stmt) {
+            $success = true;
+            $invalidReservations = getReservationByMemberId($id);
+            foreach ($invalidReservations as $invalidRes) {
+                modelDeleteReservation($invalidRes['id']);
+            }
+        }
 
     } catch (PDOException $e) {
         echo "Failed to delete: " . $e->getMessage();
